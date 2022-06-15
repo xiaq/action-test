@@ -1,0 +1,15 @@
+name: Test RUNNER_TOOL_CACHE
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: ls
+      run: ls $RUNNER_TOOL_CACHE
+    - name: Populate
+      run: touch $RUNNER_TOOL_CACHE/${{ github.sha }}
