@@ -18,9 +18,9 @@ jobs:
         fi
     - name: Populate
       run: |
-        mkdir $RUNNER_TOOL_CACHE/elvish
-        touch $RUNNER_TOOL_CACHE/elvish/${{ github.sha }}
-        touch $RUNNER_TOOL_CACHE/elvish.complete
+        mkdir $RUNNER_TOOL_CACHE/elvish/v0.1/amd64
+        echo something >> $RUNNER_TOOL_CACHE/elvish/v0.1/amd64/${{ github.sha }}
+        touch $RUNNER_TOOL_CACHE/elvish/v0.1/amd64.complete
     - name: ls again
       run: |
         ls -l $RUNNER_TOOL_CACHE
