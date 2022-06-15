@@ -10,8 +10,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: ls
-      run: ls -l $RUNNER_TOOL_CACHE
+      run: |
+        ls -l $RUNNER_TOOL_CACHE
+        if test -d $RUNNER_TOOL_CACHE/elvish; then
+          ls -lR $RUNNER_TOOL_CACHE/elvish
+        fi
     - name: Populate
-      run: touch $RUNNER_TOOL_CACHE/${{ github.sha }}
+      run: |
+        touch $RUNNER_TOOL_CACHE/elvish/${{ github.sha }}
+        touch $RUNNER_TOOL_CACHE/elvish.complete
     - name: ls again
-      run: ls -l $RUNNER_TOOL_CACHE
+      run: |
+        ls -l $RUNNER_TOOL_CACHE
+        if test -d $RUNNER_TOOL_CACHE/elvish; then
+          ls -lR $RUNNER_TOOL_CACHE/elvish
+        fi
