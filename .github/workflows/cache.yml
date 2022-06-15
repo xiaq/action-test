@@ -13,15 +13,18 @@ jobs:
       run: |
         ls -l $RUNNER_TOOL_CACHE
         if test -d $RUNNER_TOOL_CACHE/elvish; then
+          echo elvish directory exists
           ls -lR $RUNNER_TOOL_CACHE/elvish
         fi
     - name: Populate
       run: |
+        mkdir $RUNNER_TOOL_CACHE/elvish
         touch $RUNNER_TOOL_CACHE/elvish/${{ github.sha }}
         touch $RUNNER_TOOL_CACHE/elvish.complete
     - name: ls again
       run: |
         ls -l $RUNNER_TOOL_CACHE
         if test -d $RUNNER_TOOL_CACHE/elvish; then
+          echo elvish directory exists
           ls -lR $RUNNER_TOOL_CACHE/elvish
         fi
