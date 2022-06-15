@@ -10,6 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: ls
-      run: ls -lR $RUNNER_TOOL_CACHE
+      run: ls -l $RUNNER_TOOL_CACHE
     - name: Populate
       run: touch $RUNNER_TOOL_CACHE/${{ github.sha }}
+    - name: ls again
+      run: ls -l $RUNNER_TOOL_CACHE
