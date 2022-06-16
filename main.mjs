@@ -8,9 +8,9 @@ async function main() {
     } catch (e) {
         console.log("Doesn't exist :(");
     }
-    await mkdir(`${cacheDir}/elvish/0.1.0/x64`, {recursive: true});
-    await writeFile(`${cacheDir}/elvish/0.1.0/x64/elvish`, 'fake elvish');
-    await writeFile(`${cacheDir}/elvish/0.1.0/x64.complete`, '');
+    await mkdir(`${cacheDir}/elvish/1.1.0/x64`, {recursive: true});
+    await writeFile(`${cacheDir}/elvish/1.1.0/x64/elvish`, 'fake elvish');
+    await writeFile(`${cacheDir}/elvish/1.1.0/x64.complete`, '');
 }
 
 await main()
