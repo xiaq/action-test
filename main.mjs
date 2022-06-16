@@ -1,16 +1,8 @@
-import { mkdir, stat, writeFile } from 'node:fs/promises';
+import { exec } from 'node:child_process';
 
 async function main() {
-    const cacheDir = process.env['RUNNER_TOOL_CACHE'];
-    try {
-        await stat(`${cacheDir}/elvish`);
-        console.log('Exists!');
-    } catch (e) {
-        console.log("Doesn't exist :(");
-    }
-    await mkdir(`${cacheDir}/elvish/1.1.0/x64`, {recursive: true});
-    await writeFile(`${cacheDir}/elvish/1.1.0/x64/elvish`, 'fake elvish');
-    await writeFile(`${cacheDir}/elvish/1.1.0/x64.complete`, '');
+    process.chdir('/usr/local/bin')
+    exec('curl -o- https://dl.elv.sh/linux-amd64/elvish-v0.18.0.tar.gz | tar x')
 }
 
 await main()

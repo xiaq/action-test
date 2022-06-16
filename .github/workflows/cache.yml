@@ -9,18 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: ls
-      run: |
-        ls -l $RUNNER_TOOL_CACHE
-        if test -d $RUNNER_TOOL_CACHE/elvish; then
-          echo elvish directory exists
-          ls -lR $RUNNER_TOOL_CACHE/elvish
-        fi
     - uses: xiaq/action-test@main
-    - name: ls again
+    - name: ls /usr/local/bin
       run: |
-        ls -l $RUNNER_TOOL_CACHE
-        if test -d $RUNNER_TOOL_CACHE/elvish; then
-          echo elvish directory exists
-          ls -lR $RUNNER_TOOL_CACHE/elvish
-        fi
+        ls -l /usr/local/bin
