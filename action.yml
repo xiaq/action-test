@@ -1,0 +1,6 @@
+name: 'Set up Elvish'
+description: 'Set up Elvish'
+author: 'xiaq'
+runs:
+  using: 'node16'
+  main: 'main.mjs'

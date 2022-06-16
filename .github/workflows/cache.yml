@@ -16,11 +16,7 @@ jobs:
           echo elvish directory exists
           ls -lR $RUNNER_TOOL_CACHE/elvish
         fi
-    - name: Populate
-      run: |
-        mkdir -p $RUNNER_TOOL_CACHE/elvish/0.1.0/x64
-        echo something >> $RUNNER_TOOL_CACHE/elvish/0.1.0/x64/${{ github.sha }}
-        touch $RUNNER_TOOL_CACHE/elvish/0.1.0/x64.complete
+    - uses: xiaq/action-test
     - name: ls again
       run: |
         ls -l $RUNNER_TOOL_CACHE
