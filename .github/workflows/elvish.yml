@@ -5,11 +5,15 @@ on:
     branches: [ main ]
 
 jobs:
-  cache:
+  elvish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: xiaq/action-test@main
+    - name: Show /usr/local/bin
+      run: |
+        ls -l /usr/local/bin
+        elvish -c 'echo $version' || true
     - name: Run with Elvish
       run: |
         echo This is Elvish $version
