@@ -16,10 +16,6 @@ jobs:
           echo elvish directory exists
           ls -lR $RUNNER_TOOL_CACHE/elvish
         fi
-        if test -d $RUNNER_TOOL_CACHE/go; then
-          echo go directory exists
-          ls -lR $RUNNER_TOOL_CACHE/go
-        fi
     - name: Populate
       run: |
         mkdir -p $RUNNER_TOOL_CACHE/elvish/0.1.0/x64
