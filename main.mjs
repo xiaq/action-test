@@ -1,7 +1,5 @@
 import { spawn } from 'node:child_process';
 
-await main();
-
 const archMap = {ia32: '386', x64: 'amd64'};
 const platformMap = {win32: 'windows'};
 
@@ -51,3 +49,5 @@ function run(cmd, ...args) {
         });
     });
 }
+
+await main();
