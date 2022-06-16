@@ -22,9 +22,9 @@ jobs:
         fi
     - name: Populate
       run: |
-        mkdir -p $RUNNER_TOOL_CACHE/elvish/0.1.0/amd64
-        echo something >> $RUNNER_TOOL_CACHE/elvish/0.1.0/amd64/${{ github.sha }}
-        touch $RUNNER_TOOL_CACHE/elvish/0.1.0/amd64.complete
+        mkdir -p $RUNNER_TOOL_CACHE/elvish/0.1.0/x64
+        echo something >> $RUNNER_TOOL_CACHE/elvish/0.1.0/x64/${{ github.sha }}
+        touch $RUNNER_TOOL_CACHE/elvish/0.1.0/x64.complete
     - name: ls again
       run: |
         ls -l $RUNNER_TOOL_CACHE
