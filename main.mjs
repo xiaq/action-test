@@ -17,8 +17,7 @@ async function main() {
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
             Expand-Archive elvish.zip -DestinationPath .
             Remove-Item elvish.zip
-            cp elvish-${version} elvish
-            # New-Item -ItemType SymbolicLink -Path elvish -Target elvish-${version}
+            New-Item -ItemType SymbolicLink -Path elvish.exe -Target elvish-${version}.exe
             `);
     } else {
         await run('sh', '-c',
