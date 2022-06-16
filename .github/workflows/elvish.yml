@@ -10,13 +10,12 @@ jobs:
     steps:
     - name: Show environment
       run: |
-        echo $Env:Path
-        echo $Env:GITHUB_TOOL_CACHE
+        echo $Env:RUNNER_TOOL_CACHE
 
   test_elvish:
     strategy:
       matrix:
-        os: [ubuntu, macos, windows]
+        os: [ubuntu]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: xiaq/action-test@main
