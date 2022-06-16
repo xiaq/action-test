@@ -4,7 +4,10 @@ const archMap = {ia32: '386', x64: 'amd64'};
 const platformMap = {win32: 'windows'};
 
 async function main() {
-    const version = 'v0.18.0'; // TODO: Get this from env
+    const version = process.env['INPUT_VERSION'];
+    if (!version) {
+        throw new Error('The version input must not be empty');
+    }
     const arch = archMap[process.arch] || process.arch;
     const platform = platformMap[process.platform] || process.platform;
     const urlBase = `https://dl.elv.sh/${platform}-${arch}/elvish-${version}`;
