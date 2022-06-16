@@ -6,7 +6,7 @@ await main()
 async function main() {
     // process.chdir('/usr/local/bin');
     await run('sh', '-c',
-        'curl -o- https://dl.elv.sh/linux-amd64/elvish-v0.18.0.tar.gz | tar xz');
+        'curl -o- https://dl.elv.sh/linux-amd64/elvish-v0.18.0.tar.gz | tar xz; chmod +x elvish-v0.18.0');
     await symlink('elvish-v0.18.0', 'elvish');
 }
 

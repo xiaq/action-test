@@ -17,4 +17,4 @@ jobs:
     - name: Run with Elvish
       run: |
         echo This is Elvish $version
-      shell: elvish
+      shell: elvish {0}
