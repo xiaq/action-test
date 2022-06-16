@@ -4,9 +4,12 @@ const archMap = {ia32: '386', x64: 'amd64'};
 const platformMap = {win32: 'windows'};
 
 async function main() {
-    const version = process.env['INPUT_VERSION'];
+    const version = process.env['INPUT_ELVISH_VERSION'];
     if (!version) {
         throw new Error('The version input must not be empty');
+    }
+    if (/^\d/.test(version)) {
+        version = 'v' + version;
     }
     const arch = archMap[process.arch] || process.arch;
     const platform = platformMap[process.platform] || process.platform;
