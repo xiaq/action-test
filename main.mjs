@@ -4,13 +4,7 @@ const archMap = {ia32: '386', x64: 'amd64'};
 const platformMap = {win32: 'windows'};
 
 async function main() {
-    let version = process.env['INPUT_ELVISH-VERSION'];
-    if (!version) {
-        throw new Error('The version input must not be empty');
-    }
-    if (/^\d/.test(version)) {
-        version = 'v' + version;
-    }
+    const version = getVersionInput();
     const arch = archMap[process.arch] || process.arch;
     const platform = platformMap[process.platform] || process.platform;
     const urlBase = `https://dl.elv.sh/${platform}-${arch}/elvish-${version}`;
@@ -23,7 +17,8 @@ async function main() {
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
             Expand-Archive elvish.zip -DestinationPath .
             Remove-Item elvish.zip
-            New-Item -ItemType SymbolicLink -Path elvish -Target elvish-${version}
+            cp elvish-${version} elvish
+            # New-Item -ItemType SymbolicLink -Path elvish -Target elvish-${version}
             `);
     } else {
         await run('sh', '-c',
@@ -33,6 +28,14 @@ async function main() {
             ln -sf elvish-${version} elvish
             `);
     }
+}
+
+function getVersionInput() {
+    const version = process.env['INPUT_ELVISH-VERSION'];
+    if (!version) {
+        throw new Error('The version input must not be empty');
+    }
+    return /^\d/.test(version) ? 'v' + version : version;
 }
 
 function run(cmd, ...args) {
