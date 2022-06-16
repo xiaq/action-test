@@ -1,13 +1,34 @@
 import { spawn } from 'node:child_process';
-import { symlink } from 'node:fs/promises';
 
-await main()
+await main();
+
+const archMap = {ia32: '386', x64: 'amd64'};
+const platformMap = {win32: 'windows'};
 
 async function main() {
-    process.chdir('/usr/local/bin');
-    await run('sh', '-c',
-        'curl -o- https://dl.elv.sh/linux-amd64/elvish-v0.18.0.tar.gz | tar xz');
-    await symlink('elvish-v0.18.0', 'elvish');
+    const version = 'v0.18.0'; // TODO: Get this from env
+    const arch = archMap[process.arch] || process.arch;
+    const platform = platformMap[process.platform] || process.platform;
+    const urlBase = `https://dl.elv.sh/${platform}-${arch}/elvish-${version}`;
+    if (platform === 'windows') {
+        await run('pwsh', '-c',
+            `
+            New-Item -ItemType Directory C:\elvish
+            Write-Output C:\elvish >> $Env:GITHUB_PATH
+            Set-Location C:\elvish
+            Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
+            Expand-Archive .\elvish.zip -DestinationPath .
+            Remove-Item elvish.zip
+            New-Item -ItemType SymbolicLink -Path elvish elvish-${version}
+            `);
+    } else {
+        await run('sh', '-c',
+            `
+            cd /usr/local/bin
+            curl -o- ${urlBase}.tar.gz | tar xz
+            ln -sf elvish-${version} elvish
+            `);
+    }
 }
 
 function run(cmd, ...args) {

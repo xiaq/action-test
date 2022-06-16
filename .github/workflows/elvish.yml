@@ -5,17 +5,10 @@ on:
     branches: [ main ]
 
 jobs:
-  see_env:
-    runs-on: windows-latest
-    steps:
-    - name: Show environment
-      run: |
-        echo $Env:RUNNER_TOOL_CACHE
-
   test_elvish:
     strategy:
       matrix:
-        os: [ubuntu]
+        os: [ubuntu, macos, windows]
     runs-on: ${{ matrix.os }}-latest
     steps:
     - uses: xiaq/action-test@main
