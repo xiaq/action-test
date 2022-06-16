@@ -10,7 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: xiaq/action-test@main
-    - name: ls /usr/local/bin
+    - name: Show PATH
+      run: |
+        echo $PATH
+        echo /usr/local/bin >> $GITHUB_PATH
+    - name: Run with Elvish
       run: |
         echo This is Elvish $version
       shell: elvish
