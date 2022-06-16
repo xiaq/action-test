@@ -12,7 +12,7 @@ jobs:
         elvish-version: [0.18.0, HEAD]
     runs-on: ${{ matrix.os }}-latest
     steps:
-    - uses: xiaq/action-test@main
+    - uses: elves/setup-elvish@v1
       with:
         elvish-version: ${{ matrix.elvish-version }}
     - name: Run with Elvish
