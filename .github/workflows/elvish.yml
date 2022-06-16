@@ -1,4 +1,4 @@
-name: Test RUNNER_TOOL_CACHE
+name: Test Elvish
 
 on:
   push:
@@ -12,4 +12,5 @@ jobs:
     - uses: xiaq/action-test@main
     - name: ls /usr/local/bin
       run: |
-        ls -l /usr/local/bin
+        echo This is Elvish $version
+      shell: elvish
