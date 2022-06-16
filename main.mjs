@@ -11,11 +11,11 @@ async function main() {
     if (platform === 'windows') {
         await run('pwsh', '-c',
             `
-            New-Item -ItemType Directory C:\elvish
-            Write-Output C:\elvish >> $Env:GITHUB_PATH
-            Set-Location C:\elvish
+            New-Item -ItemType Directory C:\\elvish
+            Write-Output C:\\elvish >> $Env:GITHUB_PATH
+            Set-Location C:\\elvish
             Invoke-RestMethod -Uri '${urlBase}.zip' -OutFile elvish.zip
-            Expand-Archive .\elvish.zip -DestinationPath .
+            Expand-Archive elvish.zip -DestinationPath .
             Remove-Item elvish.zip
             New-Item -ItemType SymbolicLink -Path elvish elvish-${version}
             `);
