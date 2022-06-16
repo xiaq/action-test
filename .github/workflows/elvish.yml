@@ -5,15 +5,21 @@ on:
     branches: [ main ]
 
 jobs:
-  elvish:
-    runs-on: ubuntu-latest
+  see_env:
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: xiaq/action-test@main
-    - name: Show /usr/local/bin
+    - name: Show environment
       run: |
-        ls -l /usr/local/bin
-        elvish -c 'echo $version' || true
+        echo $Env:Path
+        echo $Env:GITHUB_TOOL_CACHE
+
+  test_elvish:
+    strategy:
+      matrix:
+        os: [ubuntu, macos, windows]
+    runs-on: ${{ matrix.os }}-latest
+    steps:
+    - uses: xiaq/action-test@main
     - name: Run with Elvish
       run: |
         echo This is Elvish $version
