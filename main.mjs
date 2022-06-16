@@ -4,7 +4,7 @@ const archMap = {ia32: '386', x64: 'amd64'};
 const platformMap = {win32: 'windows'};
 
 async function main() {
-    const version = process.env['INPUT_ELVISH-VERSION'];
+    let version = process.env['INPUT_ELVISH-VERSION'];
     if (!version) {
         throw new Error('The version input must not be empty');
     }
